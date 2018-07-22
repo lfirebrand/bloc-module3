@@ -1,0 +1,175 @@
+1) In your own words, explain what clean code is and why it is important.
+Clean code is very important. At our core, developers are solving problems and building solutions that can be solve specific problems easily and quickly. Clean code assures that code can be easily maintained, understandable a minimizes bugs. In addition, if code is easy to read/understand and has only one function, it will be easier to maintain and update as new software features or added or updated. Clean code is especially important in when working with multiple developers. Having clean code will insure that code is easily understandable by anyone and an be updated and changed as needed.
+
+2) Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
+One example that immediately comes to mind are any of the very high-tech medical devices such as Pacemakers or infusion pumps. If the code in these type of devices was not up to standard, it could result in something like a pacemaker ceasing to respond to an irregular heartbeat, or responding incorrectly, with the wrong amount of electrical impulses. if an infusion pump failures, or does not properly measure and track insulin levels, it could cause severe consequences if the devices delivered either too much, or not enough insulin needed. A web dev friend of mind actually uses a software controlled infusion pump which tracks his insulin levels automatically and either delivers insulin through a manual command via smartphone or automatically. If for any reason, this system would fail and he received too much or too little insulin, the results could be fatal.
+
+
+3) Would you consider the following to be clean code? Explain why or why not. If not, refactor the code
+
+
+FUNCTION do(x, y)               // Creating a new function
+ IF y = "F" THEN               // Check if y is equal "F"
+ SET z to (x−32) * (5/9)       // Formula to convert degrees fahrenheit to celsius
+ PRINT z                       // Print result
+ ELSE IF y = "C" THEN          // If y not equal to "F", check if equal to "C"
+ SET z to x * 1.8000 + 32.00   // Formula to convert degrees celsius to fahrenheit
+ PRINT z                       // Print result
+ END IF
+END FUNCTION
+
+Answer: This is not clean code because it’s hard to understand what it’s trying to do. The naming conventions do  not explain what the function is doing. I would refactor to make the names more descriptive, by renaming the arguments and functions:
+
+FUNCTION convertTemp (num, flag)
+var temp;
+IF flag = “F” THEN
+temp = (num-32) * 5/9
+PRINT temp;
+ELSE IF flag = “C” THEN
+temp = (num * 1.8) + 32
+PRINT temp;
+END IF
+END FUNCTION
+
+4) Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+
+FUNCTION calcPercent(sum, total)
+ IF NOT(total = 0) THEN
+     SET percentage to sum / total * 100
+ ELSE
+   PRINT "Sorry, cannot divide by 0"
+ END IF
+
+ PRINT percentage
+END FUNCTION
+
+Answer: I consider this code to be clean. The function is using a verb, so it’s clear that the purpose of this function is to calculate percentage. In addition the variables and arguments are labeled appropriately, so it’s clear what this code is expected to do.
+
+5) Using pseudocode, refactor the code for the following examples using the principles you have learned in this checkpoint.
+
+a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
+
+FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
+   PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
+
+   IF paymentType = 'CASH' THEN
+       CALL getPayment RETURNING amount
+       PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
+   ELSE IF paymentType = 'CREDIT CARD' THEN
+       CALL getPayment RETURNING amount
+       PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
+   END IF
+END FUNCTION
+
+Answer:
+
+CLASS customerPurchase
+
+FUNCTION calculateTotal(subTotal, discountRate, tax)
+	LET amount = subTotal * discountRate + (subTotal * tax)
+	PRINT “Your total due is “ + amount;
+	END FUNCTION
+
+FUNCTION checkOut(payment)
+	IF payment = “Cash” 
+		PRINT “Your total is “ + amount;
+	ELSE IF payment = “Credit Card”
+		PRINT “Your credit card has been charged “ + amount;
+	END IF
+	END FUNCTION
+
+END
+
+b. The following function checks out a book if there are no issues with the guest's account.
+
+FUNCTION checkoutBook(book, guest)
+ IF guest.accountActive THEN
+     IF NOT(guest.hasOverdueBooks) THEN
+         IF guest.outstandingFees = 0 THEN
+           APPEND book to guest.books
+           SET book.status to "Checked Out"
+           PRINT "Your books have been issued."
+         END IF
+     END IF
+ ELSE
+     PRINT "Unable to check out book."
+ END IF
+END FUNCTION
+
+Answer:
+
+CLASS libraryCheckout
+
+FUNCTION checkAccount(guest)
+	IF guest.accountActive THEN
+	CALL hasOverdueBooks;
+	ELSE Print “You need an account.”
+	END IF
+	END FUNCTION
+
+FUNCTION hasOverdueBooks(outstandingFees)
+	IF outstandingFees <= 0 THEN
+	CALL checkOutBook
+	ELSE Print “Unable to check out book. Please pay fees of “ + outstandingFees;
+	END IF
+	END FUNCTION
+
+FUNCTION checkoutBook(book, guest)
+	APPEND book to guests.book
+	SET book.status to “Check Out”
+	PRINT “Your books have been checked out.”
+	END FUNCTION
+
+END
+	
+
+c. The following class is a code snippet that should support the transactions a customer can perform at an ATM.
+
+CLASS BankAccount
+
+ FUNCTION displayBalance
+    PRINT balance
+ END FUNCTION
+
+ FUNCTION deposit(amount)
+    SET balance to balance + amount
+ END FUNCTION
+
+ FUNCTION withdraw(amount)
+     IF balance > amount THEN
+       SET balance to balance - amount
+     END
+ END FUNCTION
+
+ FUNCTION creditCardOffer
+     IF NOT(customer.hasCreditCard) THEN
+         CALL offerCreditCard
+     END
+ END FUNCTION
+
+ FUNCTION checkStatus
+     IF NOT(customer.hasCheckingAccount) THEN
+         CALL offerCheckingAccount
+     END
+ END FUNCTION
+
+Answer
+
+FUNCTION offerCreditCard(ccInput)
+	PRINT “Do you want a credit card?”
+	IF ccInput = “Yes”
+	PRINT “Great! We will have a customer service rep call you.”
+	ELSE 
+	PRINT “Thank you for being a valued customer.”
+	END 
+END FUNCTION
+
+FUNCTION offerCheckingAccount(checkingInput)
+	PRINT “Do you want to learn more about our checking accounts?)
+	If checkingInput = “Yes”
+	PRINT “Great! We will have a customer service rep call you.”
+	ELSE 
+	PRINT “Thank you for being a valued customer.”
+	END 
+END FUNCTION
+END
