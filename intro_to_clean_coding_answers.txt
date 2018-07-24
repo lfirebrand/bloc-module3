@@ -141,7 +141,9 @@ CLASS BankAccount
      END
  END FUNCTION
 
- FUNCTION creditCardOffer
+CLASS accountOffers
+ 
+FUNCTION offerCreditCard
      IF NOT(customer.hasCreditCard) THEN
          CALL offerCreditCard
      END
@@ -155,4 +157,4 @@ CLASS BankAccount
 
 Answer
 
-I consider this code to be clean. Each of the functions has only one purpose and only executes one function. In addition, the functions are typically named per the naming conventions. Perhaps the one change I would make would be to change the FUNCTION creditCardOffer to offerCreditCard so that it has the verb in the name, rather than a noun.
+I cleaned up this code by updating the Class functions, to divide the Function purposes into groups. The functions otherwise are pretty straightforward and each has only one purpose. I did change the name of the creditCardOffer to offerCreditCard so that it kept with the naming conventions outlined in the clean code practices.

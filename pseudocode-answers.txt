@@ -1,0 +1,40 @@
+**Short Answer Questions**
+1. Psuedocode is representational of actual code and helps developers determine the algorithm they’ll use to write their code. It allows humans to read and understand what the steps of the program is supposed to execute in plain English, before the developer codes it in their chosen language’s syntax.
+
+2. If you run psuedocode on your computer, nothing will happen. It is not a programming language that a computer can compile and run. 
+
+**Programming Questions**
+1.//Create a function that takes two numbers and prints out the greater number.
+
+FUNCTION findGreater
+INPUT the number.
+INPUT a second number.
+IF the first number is greater than or equal to the second number
+	RETURN the first number
+ELSE
+	RETURN the second number
+END FUNCTION
+
+2. // Create a function that prints out the numbers from 1 to 100.
+
+FUNCTION printNumbers
+SET the index to 0.
+FOR each number 1 through 100	
+	PRINT each number in incrementing order 1-100
+END FUNCTION
+
+3. //Create a function that searches for a specific entry in a phonebook.
+
+INITIALIZE phoneBook and SET to an object that contains multiple entries of phone numbers and name pairs.
+END 
+
+FUNCTION searchPhonebook
+INITIALIZE entry to an empty object.
+IF entry equals phoneBook name or number
+	RETURN phoneBook information
+ELSE 
+	RETURN “Entry not found.”
+END FUNCTION
+
+
+
