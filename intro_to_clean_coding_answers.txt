@@ -155,21 +155,4 @@ CLASS BankAccount
 
 Answer
 
-FUNCTION offerCreditCard(ccInput)
-	PRINT “Do you want a credit card?”
-	IF ccInput = “Yes”
-	PRINT “Great! We will have a customer service rep call you.”
-	ELSE 
-	PRINT “Thank you for being a valued customer.”
-	END 
-END FUNCTION
-
-FUNCTION offerCheckingAccount(checkingInput)
-	PRINT “Do you want to learn more about our checking accounts?)
-	If checkingInput = “Yes”
-	PRINT “Great! We will have a customer service rep call you.”
-	ELSE 
-	PRINT “Thank you for being a valued customer.”
-	END 
-END FUNCTION
-END
+I consider this code to be clean. Each of the functions has only one purpose and only executes one function. In addition, the functions are typically named per the naming conventions. Perhaps the one change I would make would be to change the FUNCTION creditCardOffer to offerCreditCard so that it has the verb in the name, rather than a noun.
