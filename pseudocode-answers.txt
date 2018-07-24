@@ -29,11 +29,11 @@ INITIALIZE phoneBook and SET to an object that contains multiple entries of phon
 END 
 
 FUNCTION searchPhonebook
-INITIALIZE entry to an empty object.
-IF entry equals phoneBook name or number
-	RETURN phoneBook information
-ELSE 
-	RETURN “Entry not found.”
+SET a FUNCTION that takes name.
+IF entry matches a name in the phone book
+	RETURN phone number
+IF no match is found
+	RETURN “Sorry, could not phone that number.”
 END FUNCTION
 
 
