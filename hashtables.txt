@@ -1,0 +1,94 @@
+1. What is a hash table?
+A: A hash table is a data structure that stores values by linking them with keys, forming key-value pairs. This is similar to Javascript Objects.
+
+2. What is hashing?
+A: Hasing converts a string to a numerical index. It’s done by using a hating function to create a unique, specific fix-length has code.
+
+3. How does a hash table store data?
+A: A hash table stores data by using the hash code to assign a specific location for each key-value pair.
+
+4. How are hash tables and objects different?
+A: The hash table is storing javascript objects (key-value pairs). A hash table can provide constant lookup in real time. Objects use value properties to retrieve an item. In some languages hash tables support this function, but not in all languages.
+
+5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
+a. A list of pets and their unique names. - Object
+b. The name, age, and the birthday of your best friend. - Object
+c. The name and location of every company in a given city. - Hash Table
+d. All of the books checked out from a library by a particular individual. - Hash Table
+e. The primary and secondary phone numbers for a contact. - Object
+
+6.  Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+class HashTable {
+  constructor() {
+    var customerList = [];
+  }
+  hash(key) {
+    var hash = require('string-hash’);
+  }
+  get(key) {
+    return hashTable[hash(key)];
+  }
+  set(key, customer) {
+    this.itemsList[hash(key)] = customer;
+  }
+}
+  
+class Customer {
+  constructor(name, address, number) {
+    this.name = name;
+    this.address = address;
+    this.number = number;
+  }
+}
+
+7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+
+class HashTable {
+  constructor() {
+    var itemsList = [];
+  
+  hash(key) {
+    var hash = require('string-hash’);
+  }
+  get(key) {
+    return hashTable[hash(key)];
+  }
+  set(key, itemsList) {
+    this.itemsList[hash(key)] = storeItems;
+  }
+}
+  
+class storeItems {
+  constructor(item, identifier, quantity) {
+    this.item = item;
+    this.identifier = identifier;
+    this.quantity = quantity;
+  }
+}
+
+8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+lass HashTable {
+  constructor() {
+    var newspaperList = [];
+  
+  hash(key) {
+    var hash = require('string-hash’);
+  }
+  get(key) {
+    return hashTable[hash(key)];
+  }
+  set(key, newspaper) {
+    this.newspaperList[hash(key)] = newspaper;
+  }
+}
+  
+class Newspaper {
+  constructor(name, publisher, publicationDate) {
+    this.name = name;
+    this.publisher = publisher;
+    this.publicationDate = publicationDate;
+  }
+}
+
+
