@@ -2,7 +2,7 @@
 A: A hash table is a data structure that stores values by linking them with keys, forming key-value pairs. This is similar to Javascript Objects.
 
 2. What is hashing?
-A: Hasing converts a string to a numerical index. It’s done by using a hating function to create a unique, specific fix-length has code.
+A: Hashing converts a string to a numerical index. It’s done by using a hating function to create a unique, specific fix-length has code.
 
 3. How does a hash table store data?
 A: A hash table stores data by using the hash code to assign a specific location for each key-value pair.
@@ -18,77 +18,210 @@ d. All of the books checked out from a library by a particular individual. - Has
 e. The primary and secondary phone numbers for a contact. - Object
 
 6.  Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
-class HashTable {
-  constructor() {
-    var customerList = [];
+
+var hash = (string, max) => {
+  var hash = 0;
+  for (var i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i);
   }
-  hash(key) {
-    var hash = require('string-hash’);
-  }
-  get(key) {
-    return hashTable[hash(key)];
-  }
-  set(key, customer) {
-    this.itemsList[hash(key)] = customer;
-  }
-}
+  return hash % max;
+};
+
+let HashTable = function() {
+
+  let customers = [];
+  const storageLimit = 10;
   
-class Customer {
-  constructor(name, address, number) {
-    this.name = name;
-    this.address = address;
-    this.number = number;
+  this.print = function() {
+    console.log(customers)
   }
-}
+
+  this.add = function(phone, name, address) {
+    var index = hash(phone, storageLimit);
+    if (customers[index] === undefined) {
+      customers[index] = [
+        [phone, name, address]
+      ];
+    } else {
+      var inserted = false;
+      for (var i = 0; i < customers[index].length; i++) {
+        if (customers[index][i][0] === phone) {
+          customers[index][i][1] = name;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        customers[index].push([phone, name, address]);
+      }
+    }
+  };
+  
+    
+  this.find = function(phone) {
+    var index = hash(phone, storageLimit);
+    if (customers[index] === undefined) {
+      return "Oh no! Customer not found";
+    } else {
+      for (var i = 0; i < customers[index].length; i++) {
+        if (customers[index][i][0] === phone) {
+          return customers[index][i][1];
+        }
+      }
+    }
+  };
+
+};
+
+let customerList = new HashTable();
+customerList.add('4026174510', 'Lexi Zgud', '626 s 17th');
+customerList.add('5558675309', 'Jenny Smith', '111 Main Street');
+customerList.add('911', 'Local Police Department', '999 Birch Ave');
+customerList.add('5173339999', 'Mr. Fred Rogers', '125 Grand Ave');
+customerList.add('4028887765', 'Joe Shearer', '3925 Gordon St');
+console.log(customerList.find('5173339999'));
+console.log(customerList.find('4162345678'));
+console.log(customerList.find('4026174510'));
+customerList.print();
 
 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
-class HashTable {
-  constructor() {
-    var itemsList = [];
+var hash = (string, max) => {
+  var hash = 0;
+  for (var i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i);
+  }
+  return hash % max;
+};
+
+let HashTable = function() {
+
+  let items = [];
+  const storageLimit = 10;
   
-  hash(key) {
-    var hash = require('string-hash’);
+  this.print = function() {
+    console.log(items)
   }
-  get(key) {
-    return hashTable[hash(key)];
-  }
-  set(key, itemsList) {
-    this.itemsList[hash(key)] = storeItems;
-  }
-}
+
+  this.add = function(itemName, quantity) {
+    var index = hash(itemName, storageLimit);
+    if (items[index] === undefined) {
+      items[index] = [
+        [itemName, quantity]
+      ];
+    } else {
+      var inserted = false;
+      for (var i = 0; i < items[index].length; i++) {
+        if (items[index][i][0] === itemName) {
+          items[index][i][1] = quantity;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        items[index].push([itemName, quantity]);
+      }
+    }
+  };
   
-class storeItems {
-  constructor(item, identifier, quantity) {
-    this.item = item;
-    this.identifier = identifier;
-    this.quantity = quantity;
-  }
-}
+    
+  this.find = function(itemName) {
+    var index = hash(itemName, storageLimit);
+    if (items[index] === undefined) {
+      return undefined;
+    } else {
+      for (var i = 0; i < items[index].length; i++) {
+        if (items[index][i][0] === itemName) {
+          return items[index][i][1];
+        }
+      }
+    }
+  };
+
+};
+
+var itemsList = new HashTable();
+itemsList.add('nails', '20');
+itemsList.add('barbie dolls', '26');
+itemsList.add('chocolate bars', '35');
+itemsList.add('bon jovi cassettes', '10');
+console.log(itemsList.find('nails'));
+console.log(itemsList.find('ice cream'));
+console.log(itemsList.find('barbie dolls'));
+console.log(itemsList.find('bon jovi cassettes'));
+itemsList.print();
 
 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
 
-lass HashTable {
-  constructor() {
-    var newspaperList = [];
+var hash = (string, max) => {
+  var hash = 0;
+  for (var i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i);
+  }
+  return hash % max;
+};
+
+let HashTable = function() {
+
+  let papers = [];
+  const storageLimit = 10;
   
-  hash(key) {
-    var hash = require('string-hash’);
+  this.print = function() {
+    console.log(papers)
   }
-  get(key) {
-    return hashTable[hash(key)];
-  }
-  set(key, newspaper) {
-    this.newspaperList[hash(key)] = newspaper;
-  }
-}
+
+  this.add = function(name, publisher, date) {
+    var index = hash(name, storageLimit);
+    if (papers[index] === undefined) {
+      papers[index] = [
+        [name, publisher, date]
+      ];
+    } else {
+      var inserted = false;
+      for (var i = 0; i < papers[index].length; i++) {
+        if (papers[index][i][0] === name) {
+          papers[index][i][1] = publisher;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        papers[index].push([name, publisher, date]);
+      }
+    }
+  };
   
-class Newspaper {
-  constructor(name, publisher, publicationDate) {
-    this.name = name;
-    this.publisher = publisher;
-    this.publicationDate = publicationDate;
-  }
-}
+    
+  this.find = function(publisher) {
+    var index = hash(publisher, storageLimit);
+    if (papers[index] === undefined) {
+      return "Oh no! Paper not found";
+    } else {
+      for (var i = 0; i < papers[index].length; i++) {
+        if (papers[index][i][0] === publisher) {
+          return papers[index][i][1];
+        }
+      }
+    }
+  };
+  
+  this.date = function(date) {
+    var index = hash(date, storageLimit);
+    if (papers[index] === undefined) {
+      return "Oh no! Paper not found";
+    } else {
+      for (var i = 0; i < papers[index].length; i++) {
+        if (papers[index][i][2] === date) {
+          return papers[index][i][0];
+        }
+      }
+    }
+  };
+
+};
+
+let newsList = new HashTable();
+newsList.add('NYT', 'New York Times', '5-10-2018');
+newsList.add('Acme Publishing', 'Lincoln Journal Star', '10-12-2016');
+console.log(newsList.find('NYT'));
+console.log(newsList.find('Acme Publishing'));
+console.log(newsList.date('5-10-2018'));
 
 
