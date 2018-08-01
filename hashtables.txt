@@ -189,13 +189,13 @@ let HashTable = function() {
   };
   
     
-  this.find = function(publisher) {
+  this.find = function(publisher, date) {
     var index = hash(publisher, storageLimit);
     if (papers[index] === undefined) {
       return "Oh no! Paper not found";
     } else {
       for (var i = 0; i < papers[index].length; i++) {
-        if (papers[index][i][0] === publisher) {
+        if (papers[index][i][0] === publisher && papers[index][i][2] === date) {
           return papers[index][i][1];
         }
       }
@@ -220,8 +220,9 @@ let HashTable = function() {
 let newsList = new HashTable();
 newsList.add('NYT', 'New York Times', '5-10-2018');
 newsList.add('Acme Publishing', 'Lincoln Journal Star', '10-12-2016');
-console.log(newsList.find('NYT'));
-console.log(newsList.find('Acme Publishing'));
-console.log(newsList.date('5-10-2018'));
-
+newsList.add('BH Media', 'Daily Nonpareil', '8-1-2018');
+newsList.add('Lee Enterprises', 'Omaha World Herald', '7-31-2018');
+console.log(newsList.find('Acme Publishing', '10-12-2016'));
+console.log(newsList.find('NYT', '5-10-2018'));
+console.log(newsList.find('Lee Enterprises', '7-31-2018'))
 
