@@ -1,0 +1,100 @@
+1. What is the main difference between a stack and a queue?
+The main difference between a stack and a queue is the order in which elements are stored and processed. A stack uses a Last-In-First-Out collection where the item on the top of the stack is the last to be placed on the stack and the first to be processed. A queue uses a First-In-First-Out data process, in which the first object to enter the data structure is also the first to leave.
+
+2. What are the similarities between stacks and queues?
+Both stacks and queues are linearly-based and can be used to rank tasks and create an order of operations.
+
+3. Imagine you are an engineer tasked with implementing the UNDO and REDO options in a word processor such as Microsoft Word. Which data structure would you use for each option and why?
+a.) UNDO would be a stack - this esentially "pops" out the most recent changes to last piece of data that was added to the documents
+b.) REDO would be a stack - it would essentially be adding back the data that was the last out back to the stack
+
+4. Given a string, reverse it using a stack. For example, the string "Bloc!" should be converted to "!colB".
+function reverse(word) {
+
+  var stack = [];
+  var rword = "";
+  
+  for (var i = 0; i < word.length; i++) {
+    stack.push(word[i]);
+  } 
+
+  for (var i = 0; i < word.length; i++) {
+    rword += stack.pop();
+    }
+  return rword;
+  
+ }
+
+console.log(reverse('David Bowie')); // logs "eiwoB divaD"
+
+5. Implement the delete functionality of a stack using one queue. Make a FIFO data structure mirror the functionality of a LIFO data structure.
+
+function Stack() { 
+    this.peopleList = []; 
+    this.push = push; 
+    this.deleted = deleted;
+} 
+
+function push(element) { 
+    this.peopleList.push(element); 
+} 
+
+function deleted() { 
+    var deletedElement = this.peopleList.shift();
+    return deletedElement;
+}
+
+var people = new Stack();
+people.push("Lily");
+people.push("Willy");
+people.push("Tim");
+people.push("Lexi");
+people.push("Joe");
+people.push("Andrea");
+console.log(people.deleted()); // returns "Lily"
+
+
+6. Fill in the methods for the following Queue class so that it will work as expected (FIFO).
+
+class Queue {
+  constructor() {
+  this.enqueue = enqueue;
+  this.dequeue = dequeue;
+  this.first = null;
+  this.size = 0;
+  }
+}
+
+var Node = function(data) {
+  this.data = data;
+  this.next = null;
+}; 
+
+function enqueue(data) {
+  var node = new Node(data);
+  if (!this.first){
+    this.first = node;
+  } else {
+    n = this.first;
+    while (n.next) {
+      n = n.next;
+    }
+    n.next = node;
+  }
+
+  this.size += 1;
+  return node;
+};
+
+function dequeue() {
+  temp = this.first;
+  this.first = this.first.next;
+  this.size -= 1;
+  return temp.data;
+};
+
+var library = new Queue();
+library.enqueue("Moby Dick");
+library.enqueue("The Winds of Winter");
+library.enqueue("Gone Girl");
+console.log(library.dequeue());
