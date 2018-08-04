@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red193\green193\blue193;}
+\margl1440\margr1440\vieww9900\viewh12900\viewkind0
+\deftab720
+\pard\tx720\pardeftab720\sl360\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 1. One of the pros of linked lists is that you don\'92t need to move or shift elements within the data structure, as you do with arrays. A disadvantage is that you have to traverse the entire linked list to find a specific element, rather than pointing to it directly via the index with an array. In addition, you can make better use of memory with a linked list, because you can use fragmented memory versus an array, which takes up a single block of memory.\
+\
+2. A real world example could be a train car. Each train car carries a specific item and is deployed in a specific manner. If you want to remove a train car, you remove that train and then connect the next train car to the previous train car. \
+\
+3. class Node \{\
+  constructor(value) \{\
+    this.value = value;\
+    this.next = null;\
+  \}\
+  \
+  setNextNode(node) \{\
+    this.next = node;\
+  \}\
+\}\
+\
+class LinkedList \{\
+  constructor() \{\
+    this.head = null;\
+  \}\
+  \
+  push(value) \{\
+    var newNode = new Node(value);\
+    \
+    if (this.head === null) \{\
+      this.head = newNode;\
+    \} else \{\
+      var currentNode = this.head;\
+      \
+      while(currentNode.next) \{\
+        currentNode = currentNode.next;\
+      \}\
+      \
+      currentNode.next = newNode;\
+    \}\
+  \}\
+\
+The problem with the code was that it wasn\'92t pushing to a newNode. This was not creating a new node, but just pushing it to a generic node.\
+\
+4.  function removeDupes (linkedList) \{\
+	WHILE nextNode !== null\
+	IF currentNode === nextNode\
+	START at currentNode \
+		currentNode -> nextNode\
+		nextNode -> nextNode.next\
+	CHANGE to currentNode->nextNode.next\
+	\}\
+\
+5. function reverseList (linkedList) \{\
+	SET currentNode = head\
+	SET previousNode = null\
+	SET nextNode = null\
+	WHILE currentNode !== null\
+		nextNode = currentNode.next\
+		currentNode.next = previousNode\
+		previousNode = currentNode\
+		currentNode = nextNode\
+	\}\
+\
+}
