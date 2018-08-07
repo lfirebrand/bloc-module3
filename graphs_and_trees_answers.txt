@@ -99,48 +99,31 @@ console.log(bst.isPresent(-6)); // returns true
 
 8. 
 
-//Calculate lowest common ancestor between n1 and n2
-FUNCTION LCA(root, n1, n2) 
-	IF root === null
-		RETURN null
-	IF root.key === n1 OR root.key === n2
-		RETURN root
+var bst = new BST();
 
-	SET node.left equal to LCA(root.left, n1, n2)
-	SET node.right to LCA(root.right, n1, n2)
+function findPath(node, target, num = 0) {
+    if (!node) {
+        return 0;
+    }
+    if (node.val === target) {
+        return num;
+    }
+    return findPath(node.left, target, num + 1) || findPath(node.right, target, num + 1);
+}
 
-	IF node.left does not equal null AND node.right does not equal null
-		RETURN root
+function lowestCommonAncestor(node, x, y) {
+    if (!node || node.val === x || node.val === y) {
+        return node;
+    }
+    const left = lowestCommonAncestor(node.left, x, y);
+    const right = lowestCommonAncestor(node.right, x, y);
+    return left && right ? node : (left || right);
+}
 
-	IF node.left does not equal null
-		RETURN LCA(root.left, n1, n2)
-	ELSE return LCA(root.right, n1, n2)
+function findDistance(bst, x, y) {
+    const LCA = lowestCommonAncestor(bst, x, y);
+    return findPath(LCA, x) + findPath(LCA, y);
+}	
 
-END FUNCTION
+findDistance(bst, 4, 14);
 
-//Calculate level of key if present in tree, otherwise returns -1 
-
-FUNCTION findLevel(root, a, level) 
-	IF root === null
-		RETURN -1
-	IF root.value === a
-		RETURN level
-	SET node.left to findLevel(root.left, a, level + 1)
-	IF node.left === -1
-		RETURN findLevel(root.right, a, level + 1)
-	ELSE
-		RETURN node.left
-
-END FUNCTION
-
-//Find distance using lowest common ancestor and level
-FUNCTION findDistance(root, a, b)
-	SET lca to LCA(root, a, b)
-
-	SET d1 to findLevel(lca, a, 0)
-	SET d2 to findLevel(lca, b, 0)
-
-	RETURN d1 + d2 // returns distance between n1 and n2
-
-END FUNCTION
-	
