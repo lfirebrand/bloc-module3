@@ -8,7 +8,7 @@
 
 5. An undirected graph means that data can travel in both directions. A-cyclic means that the graph does not form any loops. And unweighted means there is not cost of travel assigned to traveling between nodes. An example of an undirected, a-cyclic, unweighted graph would be a tree.
 
-6. A-cyclic, unweighted, undirected
+6. A-cyclic, unweighted, directed
 
 7.
 FUNCTION searchTree(but) {
@@ -99,7 +99,7 @@ console.log(bst.isPresent(-6)); // returns true
 
 8. 
 
-var bst = new BST();
+const tree = new BST();
 
 function findPath(node, target, num = 0) {
     if (!node) {
@@ -111,19 +111,18 @@ function findPath(node, target, num = 0) {
     return findPath(node.left, target, num + 1) || findPath(node.right, target, num + 1);
 }
 
-function lowestCommonAncestor(node, x, y) {
-    if (!node || node.val === x || node.val === y) {
+function lowestAncestor(node, p, q) {
+    if (!node || node.val === p || node.val === q) {
         return node;
     }
-    const left = lowestCommonAncestor(node.left, x, y);
-    const right = lowestCommonAncestor(node.right, x, y);
+    const left = lowestAncestor(node.left, p, q);
+    const right = lowestAncestor(node.right, p, q);
     return left && right ? node : (left || right);
 }
 
-function findDistance(bst, x, y) {
-    const LCA = lowestCommonAncestor(bst, x, y);
-    return findPath(LCA, x) + findPath(LCA, y);
-}	
+function findDistance(tree, p, q) {
+    const LCA = lowestAncestor(tree, p, q);
+    return findPath(LCA, p) + findPath(LCA, q);
+}
 
-findDistance(bst, 4, 14);
-
+findDistance(tree, n1, n2);
