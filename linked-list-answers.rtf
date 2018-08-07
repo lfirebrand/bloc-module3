@@ -1,12 +1,13 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red193\green193\blue193;}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red193\green193\blue193;\red0\green0\blue255;\red255\green255\blue254;
+\red0\green0\blue0;\red144\green1\blue18;\red19\green120\blue72;}
 \margl1440\margr1440\vieww9900\viewh12900\viewkind0
 \deftab720
 \pard\tx720\pardeftab720\sl360\partightenfactor0
 
-\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec3 1. One of the pros of linked lists is that you don\'92t need to move or shift elements within the data structure, as you do with arrays. A disadvantage is that you have to traverse the entire linked list to find a specific element, rather than pointing to it directly via the index with an array. In addition, you can make better use of memory with a linked list, because you can use fragmented memory versus an array, which takes up a single block of memory.\
+\f0\fs32 \cf0 \expnd0\expndtw0\kerning0
+1. One of the pros of linked lists is that you don\'92t need to move or shift elements within the data structure, as you do with arrays. A disadvantage is that you have to traverse the entire linked list to find a specific element, rather than pointing to it directly via the index with an array. In addition, you can make better use of memory with a linked list, because you can use fragmented memory versus an array, which takes up a single block of memory.\
 \
 2. A real world example could be a train car. Each train car carries a specific item and is deployed in a specific manner. If you want to remove a train car, you remove that train and then connect the next train car to the previous train car. \
 \
@@ -44,24 +45,118 @@ class LinkedList \{\
 \
 The problem with the code was that it wasn\'92t pushing to a newNode. This was not creating a new node, but just pushing it to a generic node.\
 \
-4.  function removeDupes (linkedList) \{\
-	WHILE nextNode !== null\
-	IF currentNode === nextNode\
-	START at currentNode \
-		currentNode -> nextNode\
-		nextNode -> nextNode.next\
-	CHANGE to currentNode->nextNode.next\
-	\}\
+4.  
+\f1\fs28 \cf3 \cb4 \outl0\strokewidth0 \strokec3 function\cf5 \strokec5  LinkedList () \{\cb1 \
+\pard\pardeftab720\sl420\partightenfactor0
+\cf5 \cb4     \cf3 \strokec3 this\cf5 \strokec5 .head = \cf3 \strokec3 null\cf5 \strokec5 ;\cb1 \
+\cb4 \}\cb1 \
 \
-5. function reverseList (linkedList) \{\
-	SET currentNode = head\
-	SET previousNode = null\
-	SET nextNode = null\
-	WHILE currentNode !== null\
-		nextNode = currentNode.next\
-		currentNode.next = previousNode\
-		previousNode = currentNode\
-		currentNode = nextNode\
-	\}\
+\cb4 LinkedList.prototype.insert = \cf3 \strokec3 function\cf5 \strokec5  (value) \{\cb1 \
+\cb4     \cf3 \strokec3 var\cf5 \strokec5  newNode = \{\cb1 \
+\cb4         data: value,\cb1 \
+\cb4         next:\cf3 \strokec3 null\cf5 \cb1 \strokec5 \
+\cb4     \};\cb1 \
+\
+\cb4     \cf3 \strokec3 if\cf5 \strokec5  (!\cf3 \strokec3 this\cf5 \strokec5 .head) \{\cb1 \
+\cb4         \cf3 \strokec3 this\cf5 \strokec5 .head = newNode;\cb1 \
+\cb4     \} \cf3 \strokec3 else\cf5 \strokec5  \{\cb1 \
+\cb4         \cf3 \strokec3 var\cf5 \strokec5  currentNode = \cf3 \strokec3 this\cf5 \strokec5 .head;\cb1 \
+\cb4         \cf3 \strokec3 while\cf5 \strokec5  (currentNode.next) \{\cb1 \
+\cb4             currentNode = currentNode.next;\cb1 \
+\cb4         \}\cb1 \
+\cb4         currentNode.next = newNode;\cb1 \
+\cb4     \}\cb1 \
+\cb4 \};\cb1 \
+\
+\cb4 LinkedList.prototype.removeDuplicates = \cf3 \strokec3 function\cf5 \strokec5  () \{\cb1 \
+\cb4     \cf3 \strokec3 if\cf5 \strokec5  (!\cf3 \strokec3 this\cf5 \strokec5 .head || !\cf3 \strokec3 this\cf5 \strokec5 .head.next) \{\cb1 \
+\cb4       console.log(\cf6 \strokec6 'No duplicates were found.'\cf5 \strokec5 );\cb1 \
+\cb4       \cf3 \strokec3 return\cf5 \strokec5 ;\cb1 \
+\cb4     \}\cb1 \
+\
+\cb4     \cf3 \strokec3 var\cf5 \strokec5  currentNode = \cf3 \strokec3 this\cf5 \strokec5 .head;\cb1 \
+\cb4     \cf3 \strokec3 var\cf5 \strokec5  nextNode = currentNode.next;\cb1 \
+\cb4     \cf3 \strokec3 var\cf5 \strokec5  nodes = \{\};\cb1 \
+\cb4     nodes[currentNode.data] = \cf3 \strokec3 true\cf5 \strokec5 ;\cb1 \
+\
+\cb4     \cf3 \strokec3 while\cf5 \strokec5  (nextNode) \{\cb1 \
+\cb4         \cf3 \strokec3 var\cf5 \strokec5  data = nextNode.data;\cb1 \
+\cb4         \cf3 \strokec3 if\cf5 \strokec5  (nodes[data]) \{\cb1 \
+\cb4             currentNode.next = nextNode.next;\cb1 \
+\cb4         \} \cf3 \strokec3 else\cf5 \strokec5  \{\cb1 \
+\cb4             nodes[data] = \cf3 \strokec3 true\cf5 \strokec5 ;\cb1 \
+\cb4             currentNode = nextNode.next;\cb1 \
+\cb4         \}\cb1 \
+\cb4         nextNode = nextNode.next;\cb1 \
+\cb4     \}\cb1 \
+\cb4 \};\cb1 \
+\
+\cf3 \cb4 \strokec3 var\cf5 \strokec5  list = \cf3 \strokec3 new\cf5 \strokec5  LinkedList();\cb1 \
+\cb4 list.insert(\cf6 \strokec6 "Alexis"\cf5 \strokec5 );\cb1 \
+\cb4 list.insert(\cf6 \strokec6 "Alexis"\cf5 \strokec5 );\cb1 \
+\cb4 list.insert(\cf6 \strokec6 "Alexis"\cf5 \strokec5 );\cb1 \
+\cb4 list.insert(\cf6 \strokec6 "Ringo"\cf5 \strokec5 );\cb1 \
+\cb4 list.insert(\cf6 \strokec6 "George"\cf5 \strokec5 );\cb1 \
+\cb4 console.log(list);\cb1 \
+\
+\cb4 list.removeDuplicates();\cb1 \
+\cb4 console.log(list);\cb1 \
+\pard\tx720\pardeftab720\sl360\partightenfactor0
+
+\f0\fs32 \cf0 \outl0\strokewidth0 \
+\
+5. 
+\f1\fs28 \cf3 \cb4 \outl0\strokewidth0 \strokec3 class\cf5 \strokec5  Node \{\cb1 \
+\pard\pardeftab720\sl420\partightenfactor0
+\cf5 \cb4   \cf3 \strokec3 constructor\cf5 \strokec5 (value) \{\cb1 \
+\cb4     \cf3 \strokec3 this\cf5 \strokec5 .value = value;\cb1 \
+\cb4     \cf3 \strokec3 this\cf5 \strokec5 .next = \cf3 \strokec3 null\cf5 \strokec5 ;\cb1 \
+\cb4   \}\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 class\cf5 \strokec5  LinkedList \{\cb1 \
+\cb4   \cf3 \strokec3 constructor\cf5 \strokec5 () \{\cb1 \
+\cb4     \cf3 \strokec3 this\cf5 \strokec5 .head = \cf3 \strokec3 null\cf5 \strokec5 ;\cb1 \
+\cb4     \cf3 \strokec3 this\cf5 \strokec5 .length = \cf7 \strokec7 0\cf5 \strokec5 ;\cb1 \
+\cb4   \}\cb1 \
+\
+\cb4   insert(value) \{\cb1 \
+\cb4     \cf3 \strokec3 var\cf5 \strokec5  node = \cf3 \strokec3 new\cf5 \strokec5  Node(value);\cb1 \
+\cb4     \cf3 \strokec3 if\cf5 \strokec5  (\cf3 \strokec3 this\cf5 \strokec5 .head == \cf3 \strokec3 null\cf5 \strokec5 ) \{\cb1 \
+\cb4       \cf3 \strokec3 this\cf5 \strokec5 .head = node;\cb1 \
+\cb4       \cf3 \strokec3 this\cf5 \strokec5 .length++;\cb1 \
+\cb4     \} \cf3 \strokec3 else\cf5 \strokec5  \{\cb1 \
+\cb4       \cf3 \strokec3 var\cf5 \strokec5  current = \cf3 \strokec3 this\cf5 \strokec5 .head;\cb1 \
+\cb4       \cf3 \strokec3 while\cf5 \strokec5  (current.next) \{\cb1 \
+\cb4         current = current.next;\cb1 \
+\cb4       \}\cb1 \
+\cb4       current.next = node;\cb1 \
+\cb4       \cf3 \strokec3 this\cf5 \strokec5 .length++;\cb1 \
+\cb4     \}\cb1 \
+\cb4   \}\cb1 \
+\
+\cb4   reverse() \{\cb1 \
+\cb4     \cf3 \strokec3 var\cf5 \strokec5  current = \cf3 \strokec3 this\cf5 \strokec5 .head,\cb1 \
+\cb4       previous = \cf3 \strokec3 null\cf5 \strokec5 ;\cb1 \
+\cb4     \cf3 \strokec3 while\cf5 \strokec5  (current) \{\cb1 \
+\cb4       \cf3 \strokec3 var\cf5 \strokec5  next = current.next;\cb1 \
+\cb4       current.next = previous;\cb1 \
+\cb4       previous = current;\cb1 \
+\cb4       current = next;\cb1 \
+\cb4     \}\cb1 \
+\cb4     \cf3 \strokec3 return\cf5 \strokec5  previous;\cb1 \
+\cb4   \}\cb1 \
+\cb4 \}\cb1 \
+\
+\cf3 \cb4 \strokec3 var\cf5 \strokec5  beatles = \cf3 \strokec3 new\cf5 \strokec5  LinkedList();\cb1 \
+\
+\cb4 beatles.insert(\cf6 \strokec6 "John"\cf5 \strokec5 );\cb1 \
+\cb4 beatles.insert(\cf6 \strokec6 "Paul"\cf5 \strokec5 );\cb1 \
+\cb4 beatles.insert(\cf6 \strokec6 "George"\cf5 \strokec5 );\cb1 \
+\cb4 beatles.insert(\cf6 \strokec6 "Ringo"\cf5 \strokec5 );\cb1 \
+\cb4 console.log(beatles.reverse());\cb1 \
+\pard\tx720\pardeftab720\sl360\partightenfactor0
+
+\f0\fs32 \cf0 \outl0\strokewidth0 \
 \
 }
