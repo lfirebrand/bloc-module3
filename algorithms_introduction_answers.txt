@@ -1,0 +1,54 @@
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+a. Making coffee
+
+FUNCTION makeCoffee
+	DETERMINE amount of coffee needed
+	PUT in coffee maker
+	DETERMINE amount of water needed
+	PUT in coffee maker
+	START coffee machine
+	POUR coffee into cup
+	IF (sugar is required)
+		THEN add sugar
+		ELSE don’t add sugar
+	ENDIF
+		Serve
+FUNCTION END
+
+b. Washing dishes
+
+FUNCTION washDishes
+	INIT sink of soapy water
+	GATHER dirty dishes and place into soapy water
+	REPEAT wash dishes
+		RINSE dishes
+	UNTIL all dishes are clean
+	END
+	DRY dishes
+	PUT aways dishes
+END FUNCTION
+
+c. FUNCTION bakeCake
+	SET oven to 350 degrees
+	GATHER recipe inputs 
+	MIX recipe inputs into batter
+	POUR batter into pan
+	BAKE for 50 minutes
+	IF (cake does not spring back)
+		BAKE an additional 5 minutes
+	ELSE Remove from oven
+		SET on wire rack to cool
+	ENDIF
+END FUNCTION
+
+2. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+a. OKCupid - OKCupid created an algorithm for online dating that matches prospective dates. Users answer questions and then rate them based on importance and OKCupid uses that data to find compatible matches. This is more sophisticated than other online dating applications and (may) produce greater likelihood of successful matches that other online dating sites.
+
+b. NotCo is a Chilean startup that is using a machine-learning algorithm to create plant-based products. For example, they have a database of several plant products and the algorithm combines those flavors/textures/ingredients to create new products. They can also input constraints to take into account manufacturing and product inputs. They recently pitched their process to Hershey’s as a way to make chocolate that tastes like it contains 25% cacao but only contains 15% cacao.
+
+c. Uber’s algorithm picks the closest available driver for each rider. The first step is people select the service, then the request is made to all the drivers available and the details/job is sent to the nearest driver who can accept or reject. Uber revolutionized transportation to make it cheaper and more efficient. In many cities, including Lincoln, Nebraska, studies have shown this has reduced rates of drunk driving convictions.
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+An efficient algorithm minimizes the amount of resources (time/space) that is uses to solve a problem. Efficiency can be measured on the speed or minimum memory (resource usage) or another benchmark. An inefficient algorithm may have too many steps or use up too much data to solve the problem.
