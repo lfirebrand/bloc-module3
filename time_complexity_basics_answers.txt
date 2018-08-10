@@ -1,0 +1,25 @@
+1. What is time complexity and what is its relation to algorithms?
+Time complexity describes the efficiency of an algorithm and is essential to understanding how an algorithms speed changes as new inputs are added.
+
+2. What is runtime?
+Runtime is the physical time it takes for an algorithm to rum, and is often used interchangeably with time complexity. 
+
+3. How is the runtime of an algorithm calculated?
+Runtime is calculated by adding up how many instructions an algorithm will execute, in accordance with how many inputs it takes. It's then simplified to the largest terms, with constants dropped. Comparisons, loops and function calls, as well as input size, all impact runtime efficiency.
+
+4. Name the six types of algorithm growth rates we saw in this checkpoint and list them in order of most efficient to least efficient. Now Google another algorithmic growth rate not covered and place it in the correct spot in your list.
+a. Constant
+b. Logarithmic
+c. Linear
+d. Log Linear
+e. Quadratic
+f. Exponential
+g. Factorial
+
+5. Choose one of the algorithmic growth rates from the last question and make a comparison to a real-life situation.
+An example of a factorial algorithm is the traveling salesman. He has to find the shortest route between all the cities he's traveling to, and all are connected. The number of combinations increases factorially, so if he were to travel to 3 cities, there would be 12 possible combinations, but once he hits 100+ cities there would be too many routes to calculate.
+
+6. O(n)
+7. O(n^2)
+8. O(2^n)
+9. The most time efficient would be the linear search algorithm at O(n).
