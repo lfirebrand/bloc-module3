@@ -1,0 +1,64 @@
+1. Define and compare recursion and iteration.
+
+Recursion is a when a procedure (i.e. a function) calls itself again to solve a problem. Iteration loops to repeat a part of the code.
+Many algorithms can be performed recursively or iteratively, but there may be best case scenerios. Recursive functions tend to run slower and have more limitations, however iterative functions may be more complex to implement.
+
+2. Name five algorithms that are commonly implemented by recursion.
+a. Breadth-/Depth-First Tree Search
+b. Finding items or max/min values in an array
+c. Factorial
+d. Fibonacci
+e. Bubble Sort
+
+3. When should you use recursion, and when should you avoid recursion? Give examples for each.
+Typically, it's recommended to use iterative solutions. However, recursion can have some benefits. If the algorithm has known base cases, recursion may make sense, because it handles this type of problem efectively. If it's a more straightforward loop, choose iterative. However, if the costs of implementation are high, such as with a Fibonacci sequence, it's best to use recursion, as the iterative solution would be very complex.
+For example, in finding a minimum or maximum from an array, an interative solution works best. If you're trying to find the shortest route between n number of cities (traveling salesman problem) recursion would be the best choice.
+
+4. Compare the recursive and iterative solutions to the three algorithms from the checkpoint (Factorial, Maximum, and Fibonacci). What is similar, and what is different?
+a. Factorial
+Both solutions return an error if number is less than zero. Then the recursive function calls itself and repeats the process by subtracting one from the number, and so on, until it calls itself through each item. The interative solution does this through a for loop, and ultimately performs the same operation, but sets a result each time. Both fail at negative numbers.
+b. Maximum
+The interative function uses a for loop, first initalizing the currentMaximum to the first number and then looping through and comparing each other number to the current maximum, the result (currentMaximum) is being initialized each time. The recursive solution keeps calling itself through smaller and smaller collections until it finally returns the largest number. This is far more complicated than the iterative solution and likely has a higher cost in runtime. The iterative solution is far cleaner and requires fewer lines of code.
+c. Fibonacci
+The recursive solution has two base cases, as the first two Fibonacci numbers are always 1. Then the function calls itself twice, computing twoBack and oneBack and adding them up to return the result. This is an efficient way to solve the problem, as the inputs grow. The iterative solution
+
+4. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+function findLength(array) {
+    if (!("0" in array)) {
+        return 0;
+    }
+    return findLength(array.slice(0, -1)) + 1;
+}
+
+findLength([0, 350, 4000, 9]); //returns 4
+
+5. A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+
+function isPalindrome(word) {
+  if (word.length === 0 || word.length === 1)
+    return true;
+
+  if (word[0] !== word[word.length -1])
+    return false;
+  
+  return isPalindrome(word.substr(1, word.length -2));
+}
+
+console.log(isPalindrome('tacocat')); //returns true
+console.log(isPalindrome('lexi')); //returns false
+console.log(isPalindrome('bob')); //returns true
+
+
+6. Laura and Xander are going door-to-door around their block looking for their lost cat. Write a recursive algorithm showing one way they can visit every house on their block exactly once.
+
+var neighbors = ['Sara', 'Lexi', 'Joe', 'Morgan', 'Paul and Erin']
+
+function findCat(neighbors) {
+  if (neighbors.length === 0) {
+    return "All neighbor houses searched"
+  }
+  return findCat(neighbors.slice(1));
+}
+
+findCat(neighbors); //returns All neighbor houses searched
