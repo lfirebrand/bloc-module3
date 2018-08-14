@@ -1,0 +1,61 @@
+1. What is a real-life scenario that uses linear search?
+A real life example of a linear search would be looking for a lost dog at a neighbors house. I would go to each neighbor’s house in linear order, trying to find my lost dog.
+
+2. What is a real-life scenario that uses binary search?
+A real life scenario would be searching for a book among the stacks of a library. If the book was Moby Dick, by the author Herman Melville, I would know to look in the M section. I could disregard all the stacks of A-L and I would know that I need to check M or higher (the second half of the stacks), from there I could keep parsing down the stacks until I was on the M section and then further parse that section down until I was at Me… and finally Melville. Then I could search through all the Melville titles to find “Moby Dick.
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+There would be 7 iterations.
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+There would be 3 iterations.
+
+5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+I would choose linear sort, because the binary search works only for sorted collections. Because the collection was unsorted, you’d have to iterate linearly through all items in the collection.
+
+6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+I would choose binary search. This would allow me to divide the collection into smaller sections and would make it more manageable to search through a large collection. Binary search only works on sorted collections.
+
+Programming Assignment:
+6. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+var arr = ["albatross", "bouquet", "cat,", "dog", "environment", "face", "giraffe"]
+
+ function findWord(arr, word) {
+   var low = arr[0];
+   var high = arr[arr.length -1];
+
+   while (low <= high) {
+     var mid = (arr.indexOf(low) + arr.indexOf(high)) /2;
+     mid = Math.round(mid);
+
+     if (arr[mid] > word) {
+       high = arr[mid - 1]
+
+     } else if (arr[mid] < word) {
+       low = arr[mid + 1]
+
+     } else {
+       return arr[mid]
+     }
+   }
+   return "Word not found"
+ }
+
+ findWord(arr, "albatross");
+
+7. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+var petStore = ['fighting fish', 'goldfish', 'koi', 'gar', 'minnow', 'white-spotted goldfish', 'oscar', 'gourami']; 
+
+ function findFish(arr, target) {
+   for (var i = 0; i < arr.length; i++) {
+     value = arr[i];
+     if (value === target) {
+       var result = i;
+     }
+   }
+   return result;
+ }
+
+ findFish(petStore, 'white-spotted goldfish');
