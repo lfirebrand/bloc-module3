@@ -24,14 +24,19 @@ The recursive solution has two base cases, as the first two Fibonacci numbers ar
 
 4. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
 
-function findLength(array) {
-    if (!("0" in array)) {
-        return 0;
+function countArr(array){
+  if(array.length){
+    if(typeof array[0] === "object"){
+      return countArr(array[0]) + countArr(array.slice(1));
+    } else {
+      return 1 + countArr(array.slice(1));
     }
-    return findLength(array.slice(0, -1)) + 1;
+  } else {
+    return 0;
+  }
 }
 
-findLength([0, 350, 4000, 9]); //returns 4
+countArr([25, 6, [3, 4, 5], 18, 19, [2, 3], 1000, 3]);
 
 5. A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
 
