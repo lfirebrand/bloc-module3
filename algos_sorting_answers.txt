@@ -1,0 +1,57 @@
+1. Write pseudocode for bubble sort.
+
+FUNCTION bubbleSort(collection)
+   REPEAT
+     SET swapped to false
+
+     FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+       IF collection[i] > collection[i + 1] THEN
+         SET tmp to collection[i]
+         SET collection[i] to collection[i + 1]
+         SET collection[i + 1] to tmp
+         SET swapped to true
+       END IF
+     END FOR
+   UNTIL swapped is FALSE
+
+   RETURN collection
+ END FUNCTION
+
+2. Write pseudocode for quicksort.
+
+FUNCTION partition(arr, pivot, low, high) {
+	SET pvalue to arr[pivot];
+
+	WHILE low < high {
+
+	WHILE (array[low] < pvalue) low++;
+
+	WHILE (array[high] > pvalue) high++;
+
+	SWAP(array, low, high)
+	END WHILE
+
+	RETURN low as new pivot value
+END FUNCTION
+
+FUNCTION quickSort(array, low, high) 
+	IF (low < high)
+		SET midpoint to low / 2 + high / 2
+
+		SET midpoint equal to partition(array, mid, low, high)
+
+		quickSort(array, low, mid - 1)
+		quickSort(array, mid + 1, high)
+	END IF
+	CONCATENATE subarrays
+END FUNCTION
+
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+These algorithms are more efficient because they use a divide and conquer process to divide the array into smaller subarrays, sort each smaller array and then recombine into one large sorted array. After each pass, the subarrays become smaller and easier to sort, and so less data is being processed. Once each subarray is sorted, it “hangs out” until all items in the collection are sorted and then it’s simply recombined with the collection for one large sorted array. Dividing and conquering makes this much easier and more efficient than dealing with a large collection and comparing each element in a large collection.
+
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+Bucket sort works by taking data and putting it into individual buckets, then sorting the data in each bucket using another algorithm, such as insertion sort. Then all data is recombined into a new collection. The ideal input for bucket sort is a collection where data is uniformly distributed over a range. One example would be sorting an array of floating point numbers between 0.0 and 1.0. 
+
